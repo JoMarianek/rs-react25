@@ -1,0 +1,8 @@
+.button {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.input {
+  margin: 10px;
+}

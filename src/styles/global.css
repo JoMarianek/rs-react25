@@ -14,4 +14,10 @@ html {
 
 body {
   font-family: 'Antonio', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px;
 }
