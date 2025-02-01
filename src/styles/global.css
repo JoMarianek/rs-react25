@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
+
+:root {
+  --text-color: #E0E0E0;
+  --background-color: #0A0F24;
+  --primary-color: #D4AF37;
+  --secondary-color: #BB2D3B;
+  --accent-color: #1E90FF;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: 'Antonio', sans-serif;
+}
