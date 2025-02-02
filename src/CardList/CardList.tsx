@@ -31,6 +31,7 @@ class CardList extends Component<
 
       this.setState({ data: filteredData, loading: false });
     } catch (error) {
+      console.error(error);
       this.setState({ loading: false, error: (error as Error).message });
     }
   };
