@@ -5,7 +5,7 @@ import SearchComponent from './SearchComponent/SearchComponent';
 import CardList from './CardList/CardList';
 
 class App extends Component {
-  state = { searchTerm: '' };
+  state = { searchTerm: localStorage.getItem('searchTerm') || '' };
 
   handleSearch = (term: string) => {
     this.setState({ searchTerm: term });

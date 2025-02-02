@@ -9,7 +9,10 @@ class SearchComponent extends Component<{ onSearch: (term: string) => void }> {
   };
 
   handleSearch = () => {
-    this.props.onSearch(this.state.searchTerm.trim());
+    const trimmedSearch = this.state.searchTerm.trim();
+    this.props.onSearch(trimmedSearch);
+
+    localStorage.setItem('searchTerm', trimmedSearch);
   };
 
   render() {
