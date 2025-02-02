@@ -9,7 +9,9 @@ class Card extends Component<{ name: string; type: string }> {
           <h2>{this.props.name}</h2>
         </div>
         <div>
-          <p>This astronomical object is of type: {this.props.type}</p>
+          <p>
+            This astronomical object is of type: {this.props.type.toLowerCase()}
+          </p>
         </div>
       </div>
     );

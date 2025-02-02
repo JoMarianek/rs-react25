@@ -5,14 +5,20 @@ import SearchComponent from './SearchComponent/SearchComponent';
 import CardList from './CardList/CardList';
 
 class App extends Component {
+  state = { searchTerm: '' };
+
+  handleSearch = (term: string) => {
+    this.setState({ searchTerm: term });
+  };
+
   render() {
     return (
       <>
         <header>
-          <SearchComponent />
+          <SearchComponent onSearch={this.handleSearch} />
         </header>
         <main>
-          <CardList />
+          <CardList searchTerm={this.state.searchTerm} />
         </main>
         <footer>
           <button>Trigger ErrorBoundary</button>

@@ -9,14 +9,16 @@ interface AstronomicalObject {
 }
 
 class CardList extends Component<
-  object,
+  { searchTerm: string },
   { data: AstronomicalObject[]; loading: boolean; error: string | null }
 > {
   state = { data: [], loading: false, error: null };
 
   fetchData = async () => {
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: null });
+
     const url = 'https://stapi.co/api/v2/rest/astronomicalObject/search';
+
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -24,7 +26,17 @@ class CardList extends Component<
       }
 
       const json = await response.json();
-      this.setState({ data: json.astronomicalObjects, loading: false });
+      const allData = json.astronomicalObjects;
+
+      const filteredData = this.props.searchTerm
+        ? allData.filter((item: AstronomicalObject) =>
+            item.name
+              .toLowerCase()
+              .includes(this.props.searchTerm.toLowerCase())
+          )
+        : allData;
+
+      this.setState({ data: filteredData, loading: false });
     } catch (error) {
       this.setState({ loading: false, error: (error as Error).message });
       // console.error(error.message);
@@ -33,6 +45,12 @@ class CardList extends Component<
 
   componentDidMount() {
     this.fetchData();
+  }
+
+  componentDidUpdate(prevProps: { searchTerm: string }) {
+    if (prevProps.searchTerm !== this.props.searchTerm) {
+      this.fetchData();
+    }
   }
 
   render() {
