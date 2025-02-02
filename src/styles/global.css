@@ -16,8 +16,13 @@ body {
   font-family: 'Antonio', sans-serif;
   color: var(--text-color);
   background-color: var(--background-color);
+}
+
+#root {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 25px;
+  gap: 20px;
 }
