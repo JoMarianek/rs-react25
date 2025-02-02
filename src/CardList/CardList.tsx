@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import styles from './CardList.module.css';
 import Card from './Card';
+import { fetchAstronomicalObjects } from '../services/ApiCall';
 
 interface AstronomicalObject {
   uid: string;
@@ -17,16 +18,8 @@ class CardList extends Component<
   fetchData = async () => {
     this.setState({ loading: true, error: null });
 
-    const url = 'https://stapi.co/api/v2/rest/astronomicalObject/search';
-
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      const json = await response.json();
-      const allData = json.astronomicalObjects;
+      const allData = await fetchAstronomicalObjects();
 
       const filteredData = this.props.searchTerm
         ? allData.filter((item: AstronomicalObject) =>
@@ -39,7 +32,6 @@ class CardList extends Component<
       this.setState({ data: filteredData, loading: false });
     } catch (error) {
       this.setState({ loading: false, error: (error as Error).message });
-      // console.error(error.message);
     }
   };
 
