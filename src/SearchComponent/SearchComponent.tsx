@@ -2,7 +2,7 @@ import { Component } from 'react';
 import styles from './SearchComponent.module.css';
 
 class SearchComponent extends Component<{ onSearch: (term: string) => void }> {
-  state = { searchTerm: '' };
+  state = { searchTerm: localStorage.getItem('searchTerm') || '' };
 
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.setState({ searchTerm: event.target.value });
