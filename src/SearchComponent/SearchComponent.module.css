@@ -1,0 +1,10 @@
+
+.searchContainer {
+  display: flex;
+  gap: 10px
+}
+
+.button {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
