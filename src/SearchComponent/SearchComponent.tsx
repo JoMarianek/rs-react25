@@ -1,35 +1,39 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import styles from './SearchComponent.module.css';
 
-class SearchComponent extends Component<{ onSearch: (term: string) => void }> {
-  state = { searchTerm: localStorage.getItem('searchTerm') || '' };
+interface onSearchProps {
+  onSearch: (term: string) => void;
+}
 
-  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchTerm: event.target.value });
+const SearchComponent = ({ onSearch }: onSearchProps) => {
+  const [localSearchTerm, setLocalSearchTerm] = useState(
+    localStorage.getItem('searchTerm') || ''
+  );
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalSearchTerm(event.target.value);
   };
 
-  handleSearch = () => {
-    const trimmedSearch = this.state.searchTerm.trim();
-    this.props.onSearch(trimmedSearch);
+  const handleSearch = () => {
+    const trimmedSearch = localSearchTerm.trim();
+    onSearch(trimmedSearch);
 
     localStorage.setItem('searchTerm', trimmedSearch);
   };
 
-  render() {
-    return (
-      <div className={styles.searchContainer}>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={this.state.searchTerm}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleSearch} className={styles.button}>
-          Search
-        </button>
-      </div>
-    );
-  }
-}
+  return (
+    <div className={styles.searchContainer}>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={localSearchTerm}
+        onChange={handleChange}
+      />
+      <button onClick={handleSearch} className={styles.button}>
+        Search
+      </button>
+    </div>
+  );
+};
 
 export default SearchComponent;
