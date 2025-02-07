@@ -7,7 +7,7 @@ interface onSearchProps {
 
 const SearchComponent = ({ onSearch }: onSearchProps) => {
   const [localSearchTerm, setLocalSearchTerm] = useState(
-    localStorage.getItem('searchTerm') || ''
+    localStorage.getItem('starTrek_searchTerm') || ''
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +18,7 @@ const SearchComponent = ({ onSearch }: onSearchProps) => {
     const trimmedSearch = localSearchTerm.trim();
     onSearch(trimmedSearch);
 
-    localStorage.setItem('searchTerm', trimmedSearch);
+    localStorage.setItem('starTrek_searchTerm', trimmedSearch);
   };
 
   return (

@@ -6,7 +6,7 @@ import CardList from './CardList/CardList';
 
 function App() {
   const [globalSearchTerm, setGlobalSearchTerm] = useState(
-    localStorage.getItem('searchTerm') || ''
+    localStorage.getItem('starTrek_searchTerm') || ''
   );
 
   return (
