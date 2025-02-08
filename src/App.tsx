@@ -1,6 +1,8 @@
 import './styles/global.css';
 
 import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import SearchComponent from './SearchComponent/SearchComponent';
 import CardList from './CardList/CardList';
 
@@ -16,6 +18,7 @@ function App() {
       </header>
       <main>
         <CardList searchTerm={globalSearchTerm} />
+        <Outlet />
       </main>
       <footer>
         <button>Trigger ErrorBoundary</button>

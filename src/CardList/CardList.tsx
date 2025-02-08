@@ -53,6 +53,7 @@ const CardList = ({ searchTerm }: CardListProps) => {
             key={item.uid}
             name={item.name}
             type={item.astronomicalObjectType}
+            uid={item.uid}
           />
         ))
       )}
