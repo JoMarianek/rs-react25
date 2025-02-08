@@ -1,0 +1,18 @@
+.detailedCard {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  padding: 10px;
+  height: 25vh;
+}
+
+.button {
+  border-radius: 8px;
+  width: 25px;
+  align-self: end;
+}
+
+.heading {
+  color: var(--primary-color);
+}

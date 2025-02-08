@@ -3,12 +3,7 @@ import { useEffect } from 'react';
 import styles from './CardList.module.css';
 import Card from './Card';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
-
-interface AstronomicalObject {
-  uid: string;
-  name: string;
-  astronomicalObjectType: string;
-}
+import { AstronomicalObject } from '../types/shared';
 
 interface CardListProps {
   searchTerm: string;
@@ -46,7 +41,7 @@ const CardList = ({ searchTerm }: CardListProps) => {
   return (
     <div className={styles.cardList}>
       {loading ? (
-        <div className={styles.spinner}></div>
+        <div className="spinner"></div>
       ) : (
         data.map((item: AstronomicalObject) => (
           <Card
