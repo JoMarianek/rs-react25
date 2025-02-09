@@ -1,4 +1,4 @@
-import { useSearchParams, useOutletContext } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
@@ -9,17 +9,20 @@ import { fetchSingleAstronomicalObject } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
 
 const DetailedCard = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [singleObject, setSingleObject] = useState<AstronomicalObject | null>(
     null
   );
   const [loading, setLoading] = useState<boolean>();
-  const { closeOutlet } = useOutletContext<{
-    closeOutlet: (event: React.MouseEvent) => void;
-  }>();
   const detailedCardRef = useRef<HTMLDivElement>(null);
 
   const uid = searchParams.get('details');
+
+  const handleClose = () => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.delete('details');
+    setSearchParams(newSearchParams);
+  };
 
   useEffect(() => {
     if (!uid) return;
@@ -45,7 +48,7 @@ const DetailedCard = () => {
         <div className="spinner"></div>
       ) : (
         <>
-          <button onClick={closeOutlet} className={styles.button}>
+          <button onClick={handleClose} className={styles.button}>
             x
           </button>
           <h3 className={styles.heading}>{singleObject?.name}</h3>

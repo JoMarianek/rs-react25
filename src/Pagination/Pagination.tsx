@@ -15,7 +15,7 @@ const Pagination = () => {
   );
 
   return (
-    <div>
+    <div className={styles.paginationContainer}>
       {pageNumbers.map((pageNumber) => (
         <Link key={pageNumber} to={`/?page=${pageNumber}`}>
           <button className={styles.button}>{pageNumber}</button>
