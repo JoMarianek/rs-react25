@@ -6,6 +6,7 @@ import styles from './CardList.module.css';
 import Card from './Card';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
+import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
 
 interface CardListProps {
   searchTerm: string;
@@ -15,6 +16,7 @@ const CardList = ({ searchTerm }: CardListProps) => {
   const [searchParams] = useSearchParams();
   const [data, setData] = useState<AstronomicalObject[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const handleClose = useCloseDetailedCard();
 
   const page = Number(searchParams.get('page')) || 0;
 
@@ -44,7 +46,7 @@ const CardList = ({ searchTerm }: CardListProps) => {
   }, [searchTerm, page]);
 
   return (
-    <div className={styles.cardList}>
+    <div onClick={handleClose} className={styles.cardList}>
       {loading ? (
         <div className="spinner"></div>
       ) : (

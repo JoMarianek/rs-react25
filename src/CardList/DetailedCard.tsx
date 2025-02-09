@@ -7,22 +7,18 @@ import styles from './DetailedCard.module.css';
 
 import { fetchSingleAstronomicalObject } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
+import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
 
 const DetailedCard = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const [singleObject, setSingleObject] = useState<AstronomicalObject | null>(
     null
   );
   const [loading, setLoading] = useState<boolean>();
+  const handleClose = useCloseDetailedCard();
   const detailedCardRef = useRef<HTMLDivElement>(null);
 
   const uid = searchParams.get('details');
-
-  const handleClose = () => {
-    const newSearchParams = new URLSearchParams(searchParams);
-    newSearchParams.delete('details');
-    setSearchParams(newSearchParams);
-  };
 
   useEffect(() => {
     if (!uid) return;
