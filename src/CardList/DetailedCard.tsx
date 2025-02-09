@@ -1,6 +1,7 @@
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useRef } from 'react';
 
 import styles from './DetailedCard.module.css';
 
@@ -13,7 +14,10 @@ const DetailedCard = () => {
     null
   );
   const [loading, setLoading] = useState<boolean>();
-  // const { closeOutlet } = useOutletContext<{ closeOutlet: (event: MouseEvent) => void }>();
+  const { closeOutlet } = useOutletContext<{
+    closeOutlet: (event: React.MouseEvent) => void;
+  }>();
+  const detailedCardRef = useRef<HTMLDivElement>(null);
 
   const uid = searchParams.get('details');
 
@@ -36,12 +40,14 @@ const DetailedCard = () => {
 
   if (!uid) return;
   return (
-    <div className={styles.detailedCard}>
+    <div ref={detailedCardRef} className={styles.detailedCard}>
       {loading ? (
         <div className="spinner"></div>
       ) : (
         <>
-          <button className={styles.button}>x</button>
+          <button onClick={closeOutlet} className={styles.button}>
+            x
+          </button>
           <h3 className={styles.heading}>{singleObject?.name}</h3>
           <p>
             This {singleObject?.astronomicalObjectType} is located in the{' '}
