@@ -8,10 +8,14 @@ interface CardProps {
 }
 
 const Card = ({ name, type, uid }: CardProps) => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   return (
     <div
-      onClick={() => setSearchParams({ details: uid })}
+      onClick={() => {
+        const newSearchParams = new URLSearchParams(searchParams);
+        newSearchParams.set('details', uid);
+        setSearchParams(newSearchParams);
+      }}
       className={styles.cardContainer}
     >
       <div>

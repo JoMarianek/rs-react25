@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
 import styles from './CardList.module.css';
 import Card from './Card';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
-import { useSearchParams } from 'react-router-dom';
 
 interface CardListProps {
   searchTerm: string;
