@@ -1,5 +1,5 @@
-export const fetchAstronomicalObjects = async () => {
-  const url = 'https://stapi.co/api/v2/rest/astronomicalObject/search';
+export const fetchAstronomicalObjects = async (page: number) => {
+  const url = `https://stapi.co/api/v2/rest/astronomicalObject/search?pageNumber=${page}`;
 
   const response = await fetch(url);
   if (!response.ok) {

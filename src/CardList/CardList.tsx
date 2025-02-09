@@ -4,21 +4,25 @@ import styles from './CardList.module.css';
 import Card from './Card';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
+import { useSearchParams } from 'react-router-dom';
 
 interface CardListProps {
   searchTerm: string;
 }
 
 const CardList = ({ searchTerm }: CardListProps) => {
+  const [searchParams] = useSearchParams();
   const [data, setData] = useState<AstronomicalObject[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const page = Number(searchParams.get('page')) || 0;
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
 
       try {
-        const allData = await fetchAstronomicalObjects();
+        const allData = await fetchAstronomicalObjects(page);
 
         const filteredData = searchTerm
           ? allData.filter((item: AstronomicalObject) =>
@@ -36,7 +40,7 @@ const CardList = ({ searchTerm }: CardListProps) => {
     };
 
     fetchData();
-  }, [searchTerm]);
+  }, [searchTerm, page]);
 
   return (
     <div className={styles.cardList}>
