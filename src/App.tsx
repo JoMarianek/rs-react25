@@ -1,7 +1,7 @@
 import './styles/global.css';
 
-import { useRef, useState } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { useState } from 'react';
+import { Outlet } from 'react-router-dom';
 
 import SearchComponent from './SearchComponent/SearchComponent';
 import CardList from './CardList/CardList';
@@ -11,33 +11,16 @@ function App() {
   const [globalSearchTerm, setGlobalSearchTerm] = useState(
     localStorage.getItem('starTrek_searchTerm') || ''
   );
-  const [, setSearchParams] = useSearchParams();
-  const detailedCardRef = useRef<HTMLDivElement>(null);
-
-  const closeOutlet = (event: React.MouseEvent<HTMLDivElement>) => {
-    console.log('closeOutlet called');
-    if (
-      detailedCardRef.current &&
-      !detailedCardRef.current.contains(event.target as Node)
-    ) {
-      console.log('Closing details');
-      setSearchParams((params) => {
-        params.delete('details');
-        // return params;
-        return new URLSearchParams(params);
-      });
-    }
-  };
 
   return (
-    <div onClick={closeOutlet}>
+    <div>
       <header>
         <SearchComponent onSearch={setGlobalSearchTerm} />
       </header>
       <main>
         <div className="mainContainer">
           <CardList searchTerm={globalSearchTerm} />
-          <Outlet context={{ closeOutlet }} />
+          <Outlet />
         </div>
         <Pagination />
       </main>

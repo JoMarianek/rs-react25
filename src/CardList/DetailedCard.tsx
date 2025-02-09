@@ -1,7 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useRef } from 'react';
 
 import styles from './DetailedCard.module.css';
 
@@ -16,7 +15,6 @@ const DetailedCard = () => {
   );
   const [loading, setLoading] = useState<boolean>();
   const handleClose = useCloseDetailedCard();
-  const detailedCardRef = useRef<HTMLDivElement>(null);
 
   const uid = searchParams.get('details');
 
@@ -39,7 +37,7 @@ const DetailedCard = () => {
 
   if (!uid) return;
   return (
-    <div ref={detailedCardRef} className={styles.detailedCard}>
+    <div className={styles.detailedCard}>
       {loading ? (
         <div className="spinner"></div>
       ) : (
@@ -50,8 +48,8 @@ const DetailedCard = () => {
           <h3 className={styles.heading}>{singleObject?.name}</h3>
           <p>
             This {singleObject?.astronomicalObjectType} is located in the{' '}
-            {singleObject?.location.name}, which is of type{' '}
-            {singleObject?.location.astronomicalObjectType.toLowerCase()}
+            {singleObject?.location?.name}, which is of type{' '}
+            {singleObject?.location?.astronomicalObjectType.toLowerCase()}
           </p>
         </>
       )}
