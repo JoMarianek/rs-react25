@@ -1,15 +1,20 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary.tsx';
+import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
+
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary.tsx';
 import router from './routes/routes.tsx';
+import { store } from './app/store.ts';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
   createRoot(rootElement).render(
     <StrictMode>
       <ErrorBoundary>
-        <RouterProvider router={router} />
+        <Provider store={store}>
+          <RouterProvider router={router} />
+        </Provider>
       </ErrorBoundary>
     </StrictMode>
   );

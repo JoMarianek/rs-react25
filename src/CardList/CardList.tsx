@@ -7,6 +7,7 @@ import Card from './Card';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
 import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
+// import { useGetAstronomicalObjQuery } from '../services/apiSlice';
 
 interface CardListProps {
   searchTerm: string;
