@@ -1,13 +1,10 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import styles from './CardList.module.css';
 import Card from './Card';
-import { fetchAstronomicalObjects } from '../services/ApiCall';
 import { AstronomicalObject } from '../types/shared';
 import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
-// import { useGetAstronomicalObjQuery } from '../services/apiSlice';
+import { useGetAstronomicalObjQuery } from '../services/apiSlice';
 
 interface CardListProps {
   searchTerm: string;
@@ -15,51 +12,42 @@ interface CardListProps {
 
 const CardList = ({ searchTerm }: CardListProps) => {
   const [searchParams] = useSearchParams();
-  const [data, setData] = useState<AstronomicalObject[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
   const handleClose = useCloseDetailedCard();
 
   const page = Number(searchParams.get('page')) || 0;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
+  const {
+    data: astronomicalObjects = [],
+    isFetching,
+    isSuccess,
+    isError,
+    error,
+  } = useGetAstronomicalObjQuery(page);
 
-      try {
-        const allData = await fetchAstronomicalObjects(page);
+  let content: React.ReactNode;
 
-        const filteredData = searchTerm
-          ? allData.filter((item: AstronomicalObject) =>
-              item.name.toLowerCase().includes(searchTerm.toLowerCase())
-            )
-          : allData;
+  if (isFetching) {
+    content = <div className="spinner"></div>;
+  } else if (isSuccess) {
+    const filteredData = searchTerm
+      ? astronomicalObjects.filter((item: AstronomicalObject) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      : astronomicalObjects;
 
-        setData(filteredData);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [searchTerm, page]);
+    content = filteredData.map((item: AstronomicalObject) => (
+      <Card
+        key={item.uid}
+        name={item.name}
+        type={item.astronomicalObjectType}
+        uid={item.uid}
+      />
+    ));
+  } else if (isError) content = <div>{error.toString()}</div>;
 
   return (
     <div onClick={handleClose} className={styles.cardList}>
-      {loading ? (
-        <div className="spinner"></div>
-      ) : (
-        data.map((item: AstronomicalObject) => (
-          <Card
-            key={item.uid}
-            name={item.name}
-            type={item.astronomicalObjectType}
-            uid={item.uid}
-          />
-        ))
-      )}
+      {content}
     </div>
   );
 };
