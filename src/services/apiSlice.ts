@@ -14,7 +14,14 @@ export const apiSlice = createApi({
         astronomicalObjects: AstronomicalObject[];
       }) => response.astronomicalObjects,
     }),
+    getSingleAstronomicalObj: builder.query<AstronomicalObject, string>({
+      query: (uid) => `?uid=${uid}`,
+      transformResponse: (response: {
+        astronomicalObject: AstronomicalObject;
+      }) => response.astronomicalObject,
+    }),
   }),
 });
 
-export const { useGetAstronomicalObjQuery } = apiSlice;
+export const { useGetAstronomicalObjQuery, useGetSingleAstronomicalObjQuery } =
+  apiSlice;
