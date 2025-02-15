@@ -14,7 +14,7 @@ export const apiSlice = createApi({
         astronomicalObjects: AstronomicalObject[];
       }) => response.astronomicalObjects,
     }),
-    getSingleAstronomicalObj: builder.query<AstronomicalObject, string>({
+    getSingleAstronomicalObj: builder.query<AstronomicalObject, string | null>({
       query: (uid) => `?uid=${uid}`,
       transformResponse: (response: {
         astronomicalObject: AstronomicalObject;
