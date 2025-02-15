@@ -1,6 +1,15 @@
-// import styles from '.ToggleThemeButton.module.css';
+import { useTheme } from '../hooks/useTheme';
+import styles from './ToggleThemeButton.module.css';
 
-// const handleClick = () =>
-//   button.textcontent === 'Light Mode' ? 'Dark Mode' : 'Light Mode';
+const ToggleThemeButton = () => {
+  const { theme, toggleTheme } = useTheme();
+  const buttonText = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
 
-// return <button onClick={handleClick} className={styles.toggleButton}>`${button.textcontent}`</button>;
+  return (
+    <button onClick={toggleTheme} className={styles.toggleButton}>
+      {buttonText}
+    </button>
+  );
+};
+
+export default ToggleThemeButton;
