@@ -6,6 +6,7 @@ import { RouterProvider } from 'react-router-dom';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary.tsx';
 import router from './routes/routes.tsx';
 import { store } from './app/store.ts';
+import { ThemeProvider } from './contexts/ThemeContext.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
@@ -13,7 +14,9 @@ if (rootElement) {
     <StrictMode>
       <ErrorBoundary>
         <Provider store={store}>
-          <RouterProvider router={router} />
+          <ThemeProvider>
+            <RouterProvider router={router} />
+          </ThemeProvider>
         </Provider>
       </ErrorBoundary>
     </StrictMode>
