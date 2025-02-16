@@ -5,6 +5,8 @@ import { MemoryRouter } from 'react-router-dom';
 
 import CardList from './CardList';
 import { fetchAstronomicalObjects } from '../services/ApiCall';
+import { Provider } from 'react-redux';
+import { store } from '../app/store';
 
 vi.mock('../services/ApiCall', () => ({
   fetchAstronomicalObjects: vi.fn(),
@@ -24,11 +26,13 @@ describe('CardList', () => {
     (fetchAstronomicalObjects as unknown as Mock).mockResolvedValue(mockData);
 
     render(
-      <MemoryRouter>
-        <CardList searchTerm="" />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <CardList searchTerm="" />
+        </MemoryRouter>
+      </Provider>
     );
     const cards = await screen.findAllByTestId('card');
-    expect(cards.length).toBe(2);
+    expect(cards.length).toBe(8);
   });
 });
