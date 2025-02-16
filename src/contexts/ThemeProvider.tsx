@@ -16,7 +16,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div data-theme={theme}>{children}</div>
+      <div data-theme={theme} className="themeWrapper">
+        {children}
+      </div>
     </ThemeContext.Provider>
   );
 };
