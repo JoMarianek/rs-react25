@@ -17,7 +17,7 @@ const DetailedCard = () => {
     isSuccess,
     isError,
     error,
-  } = useGetSingleAstronomicalObjQuery(uid);
+  } = useGetSingleAstronomicalObjQuery(uid, { skip: !uid });
 
   let content: React.ReactNode;
 
