@@ -1,5 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
+
 import styles from './Card.module.css';
+
+import CheckBox from '../CheckBox/CheckBox';
 
 interface CardProps {
   name: string;
@@ -18,6 +21,7 @@ const Card = ({ name, type, uid }: CardProps) => {
       }}
       className={styles.cardContainer}
     >
+      <CheckBox />
       <div>
         <h2>{name}</h2>
       </div>
