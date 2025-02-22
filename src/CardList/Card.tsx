@@ -14,6 +14,7 @@ const Card = ({ name, type, uid }: CardProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
   return (
     <div
+      data-testid="card-container"
       onClick={() => {
         const newSearchParams = new URLSearchParams(searchParams);
         newSearchParams.set('details', uid);
