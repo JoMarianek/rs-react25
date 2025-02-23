@@ -23,7 +23,8 @@ describe('Pagination component', () => {
       expect(button).toHaveTextContent(String(pageNumber));
 
       const link = button.closest('a');
-      expect(link).toHaveAttribute('href', `/?page=${pageNumber}`);
+      const expectedHref = pageNumber === 1 ? '/' : `/?page=${pageNumber}`;
+      expect(link).toHaveAttribute('href', expectedHref);
     });
   });
 });

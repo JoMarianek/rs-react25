@@ -9,7 +9,10 @@ export const apiSlice = createApi({
   }),
   endpoints: (builder) => ({
     getAstronomicalObj: builder.query<AstronomicalObject[], number>({
-      query: (page) => `/search?pageNumber=${page}&pageSize=${ITEMS_PER_PAGE}`,
+      query: (page = 1) => {
+        const apiPageNumber = Math.max(0, page - 1);
+        return `/search?pageNumber=${apiPageNumber}&pageSize=${ITEMS_PER_PAGE}`;
+      },
       transformResponse: (response: {
         astronomicalObjects: AstronomicalObject[];
       }) => response.astronomicalObjects,

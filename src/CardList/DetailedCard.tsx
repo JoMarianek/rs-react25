@@ -22,7 +22,7 @@ const DetailedCard = () => {
   let content: React.ReactNode;
 
   if (isFetching) {
-    content = <div className="spinner"></div>;
+    content = <div className="spinner" data-testid="spinner"></div>;
   } else if (isSuccess) {
     content = (
       <p>

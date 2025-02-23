@@ -14,7 +14,48 @@ vi.mock('../hooks/useCloseDetailedCard', () => ({
   useCloseDetailedCard: vi.fn().mockReturnValue(() => {}),
 }));
 
-describe('DetailedCard -displays data correctly', () => {
+describe('DetailedCard', () => {
+  it('renders loading spinner when fetching', () => {
+    (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+      data: null,
+      isFetching: true,
+      isSuccess: false,
+      isError: false,
+      error: null,
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/?details=123']}>
+        <DetailedCard />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+  });
+
+  it('renders error message when query fails', () => {
+    const testError = new Error('Test error');
+    (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+      data: null,
+      isFetching: false,
+      isSuccess: false,
+      isError: true,
+      error: testError,
+    });
+
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <MemoryRouter initialEntries={['/?details=123']}>
+        <DetailedCard />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(testError.toString())).toBeInTheDocument();
+    expect(consoleSpy).toHaveBeenCalledWith(testError);
+    consoleSpy.mockRestore();
+  });
+
   it('renders the data when the query is successful', () => {
     (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
       data: {
