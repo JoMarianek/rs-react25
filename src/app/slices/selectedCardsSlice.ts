@@ -27,8 +27,10 @@ const selectedCardsSlice = createSlice({
         state.selectedCards.push(action.payload);
       }
     },
-    removeCard: (state, action: PayloadAction<SelectedCard>) => {
-      state.selectedCards.filter((card) => card.uid !== action.payload.uid);
+    removeCard: (state, action: PayloadAction<string>) => {
+      state.selectedCards = state.selectedCards.filter(
+        (card) => card.uid !== action.payload
+      );
     },
     clearAllCards: (state) => {
       state.selectedCards = [];

@@ -7,3 +7,9 @@ export interface AstronomicalObject {
     astronomicalObjectType: string;
   };
 }
+
+export interface CardProps {
+  name: string;
+  type: string;
+  uid: string;
+}
