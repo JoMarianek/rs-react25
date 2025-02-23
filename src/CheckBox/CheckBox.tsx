@@ -25,8 +25,6 @@ const CheckBox = ({ uid, name, type }: CardProps) => {
     }
   };
 
-  console.log(`Checkbox ${uid} isSelected:`, isSelected);
-
   return (
     <input
       type="checkbox"

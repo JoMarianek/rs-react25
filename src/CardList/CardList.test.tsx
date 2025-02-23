@@ -5,14 +5,18 @@ import { describe, it, expect, vi, Mock } from 'vitest';
 import { useGetAstronomicalObjQuery } from '../services/apiSlice';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import selectedCardsReducer, { selectedCards } from '../app/slices/selectedCardsSlice';
+import selectedCardsReducer from '../app/slices/selectedCardsSlice';
 import { apiSlice } from '../services/apiSlice';
 
 import CardList from './CardList';
 
-vi.mock('../services/apiSlice', () => ({
-  useGetAstronomicalObjQuery: vi.fn(),
-}));
+vi.mock('../services/apiSlice', async () => {
+  const actual = await vi.importActual('../services/apiSlice');
+  return {
+    ...actual,
+    useGetAstronomicalObjQuery: vi.fn(),
+  };
+});
 
 vi.mock('../hooks/useCloseDetailedCard', () => ({
   useCloseDetailedCard: vi.fn().mockReturnValue(() => {}),

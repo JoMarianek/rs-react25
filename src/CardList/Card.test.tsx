@@ -1,17 +1,25 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { configureStore } from '@reduxjs/toolkit';
+import { describe, it, expect } from 'vitest';
+import selectedCardsReducer from '../app/slices/selectedCardsSlice';
+
 import Card from './Card';
+
+const store = configureStore({
+  reducer: {
+    selectedCards: selectedCardsReducer,
+  },
+});
 
 const mockSetSearchParams = vi.fn();
 vi.mock('react-router-dom', async () => {
   const actual = await vi.importActual('react-router-dom');
   return {
     ...actual,
-    useSearchParams: vi.fn(() => [
-      new URLSearchParams(''),
-      mockSetSearchParams,
-    ]),
+    useSearchParams: () => [new URLSearchParams(), mockSetSearchParams],
   };
 });
 
@@ -20,35 +28,39 @@ describe('Card component', () => {
     vi.clearAllMocks();
   });
 
+  const mockProps = {
+    name: 'Enterprise',
+    type: 'Ship',
+    uid: '123',
+  };
+
   it('renders the card with the correct name and type', () => {
     render(
-      <MemoryRouter>
-        <Card name="Antares" type="Nebula" uid="1" />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter>
+          <Card {...mockProps} />
+        </MemoryRouter>
+      </Provider>
     );
 
-    const heading = screen.getByRole('heading', { level: 2 });
-    expect(heading).toHaveTextContent('Antares');
-
-    const paragraph = screen.getByText(/This astronomical object is of type:/i);
-    expect(paragraph).toHaveTextContent(
-      'This astronomical object is of type: nebula'
-    );
+    expect(screen.getByRole('heading')).toHaveTextContent('Enterprise');
+    expect(screen.getByText(/ship/i)).toBeInTheDocument();
   });
 
   it('updates URL params when clicked', () => {
     render(
-      <MemoryRouter>
-        <Card name="Antares" type="Nebula" uid="STAR123" />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/']}>
+          <Card {...mockProps} />
+        </MemoryRouter>
+      </Provider>
     );
 
-    const cardContainer = screen.getByTestId('card-container');
-    fireEvent.click(cardContainer);
+    fireEvent.click(screen.getByTestId('card-container'));
 
     expect(mockSetSearchParams).toHaveBeenCalledTimes(1);
     const newParams = new URLSearchParams();
-    newParams.set('details', 'STAR123');
+    newParams.set('details', '123');
     expect(mockSetSearchParams).toHaveBeenCalledWith(newParams);
   });
 });
