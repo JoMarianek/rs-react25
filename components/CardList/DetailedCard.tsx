@@ -2,8 +2,8 @@ import { useSearchParams } from 'react-router-dom';
 
 import styles from './DetailedCard.module.css';
 
-import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
-import { useGetSingleAstronomicalObjQuery } from '../services/apiSlice';
+import { useCloseDetailedCard } from '../../src/hooks/useCloseDetailedCard';
+import { useGetSingleAstronomicalObjQuery } from '../../src/services/apiSlice';
 
 const DetailedCard = () => {
   const [searchParams] = useSearchParams();

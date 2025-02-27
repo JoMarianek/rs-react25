@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"]
+  "include": ["src", "components/ToggleTheme", "store/index.ts", "types", "hooks", "contexts", "components/layouts/MainLayout.tsx"]
 }

@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 import SearchComponent from './SearchComponent/SearchComponent';
 import CardList from './CardList/CardList';
 import Pagination from './Pagination/Pagination';
-import ToggleThemeButton from './ToggleTheme/ToggleThemeButton';
+import ToggleThemeButton from '../ToggleTheme/ToggleThemeButton';
 
 const MainComponent = () => {
   const [globalSearchTerm, setGlobalSearchTerm] = useState(

@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi, Mock } from 'vitest';
 
 import DetailedCard from './DetailedCard';
-import { useGetSingleAstronomicalObjQuery } from '../services/apiSlice';
+import { useGetSingleAstronomicalObjQuery } from '../../src/services/apiSlice';
 
 vi.mock('../services/apiSlice', () => ({
   useGetSingleAstronomicalObjQuery: vi.fn(),

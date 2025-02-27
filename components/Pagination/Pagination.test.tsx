@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import Pagination from './Pagination';
-import { ITEMS_PER_PAGE } from '../config';
+import { ITEMS_PER_PAGE } from '../../src/config';
 
 describe('Pagination component', () => {
   it('renders the correct number of page buttons wiht proper links', () => {

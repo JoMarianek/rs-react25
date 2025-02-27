@@ -7,7 +7,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query';
 
 import selectedCardsReducer, {
   selectIsCardSelected,
-} from '../app/slices/selectedCardsSlice';
+} from '../../src/app/slices/selectedCardsSlice';
 import CheckBox from './CheckBox';
 
 const mockApi = createApi({

@@ -5,8 +5,8 @@ import { RouterProvider } from 'react-router-dom';
 
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary.tsx';
 import router from './routes/routes.tsx';
-import { store } from './app/store.ts';
-import { ThemeProvider } from './contexts/ThemeProvider.tsx';
+import { store } from '../store/index.ts';
+import { ThemeProvider } from '../contexts/ThemeProvider.tsx';
 
 const rootElement = document.getElementById('root');
 if (rootElement) {

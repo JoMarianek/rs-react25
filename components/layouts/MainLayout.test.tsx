@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import MainComponent from './MainComponent';
+import MainComponent from '../components/layouts/MainComponent';
 
 vi.mock('./Pagination/Pagination', () => ({
   __esModule: true,
