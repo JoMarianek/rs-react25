@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import SearchComponent from './SearchComponent/SearchComponent';
-import CardList from './CardList/CardList';
-import Pagination from './Pagination/Pagination';
+import SearchComponent from '../SearchComponent/SearchComponent';
+import CardList from '../CardList/CardList';
+import Pagination from '../Pagination/Pagination';
 import ToggleThemeButton from '../ToggleTheme/ToggleThemeButton';
 
-const MainComponent = () => {
+const MainLayout = () => {
   const [globalSearchTerm, setGlobalSearchTerm] = useState(
     localStorage.getItem('starTrek_searchTerm') || ''
   );
@@ -28,4 +28,4 @@ const MainComponent = () => {
   );
 };
 
-export default MainComponent;
+export default MainLayout;

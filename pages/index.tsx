@@ -1,9 +1,9 @@
-import MainComponent from './MainComponent';
+import MainLayout from '../components/layouts/MainLayout';
 
 function App() {
   return (
     <div>
-      <MainComponent />
+      <MainLayout />
       <footer>
         <button>Trigger ErrorBoundary</button>
       </footer>
