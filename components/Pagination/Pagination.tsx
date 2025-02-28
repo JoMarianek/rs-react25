@@ -1,7 +1,7 @@
 import { Link, useSearchParams } from 'react-router-dom';
 
 import styles from './Pagination.module.css';
-import { ITEMS_PER_PAGE } from '../../src/config';
+import { ITEMS_PER_PAGE } from '../../config/config';
 
 const Pagination = () => {
   const [searchParams] = useSearchParams();

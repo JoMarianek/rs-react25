@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { CardProps } from '../../src/types/shared';
+import { CardProps } from '../../types/shared';
 import {
   selectIsCardSelected,
   addCard,
   removeCard,
-} from '../../src/app/slices/selectedCardsSlice';
+} from '../../store/selectedCardsSlice';
 
 const CheckBox = ({ uid, name, type }: CardProps) => {
   const dispatch = useDispatch();

@@ -2,9 +2,9 @@ import { useSearchParams } from 'react-router-dom';
 
 import styles from './CardList.module.css';
 import Card from './Card';
-import { AstronomicalObject } from '../types/shared';
-import { useCloseDetailedCard } from '../hooks/useCloseDetailedCard';
-import { useGetAstronomicalObjQuery } from '../services/apiSlice';
+import { AstronomicalObject } from '../../types/shared';
+import { useCloseDetailedCard } from '../../hooks/useCloseDetailedCard';
+import { useGetAstronomicalObjQuery } from '../../store/apiSlice';
 
 interface CardListProps {
   searchTerm: string;

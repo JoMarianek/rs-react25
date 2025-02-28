@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { apiSlice } from '../services/apiSlice';
-import selectedCardsReducer from '../src/app/slices/selectedCardsSlice';
+import { apiSlice } from './apiSlice';
+import selectedCardsReducer from './selectedCardsSlice';
 
 export const store = configureStore({
   reducer: {

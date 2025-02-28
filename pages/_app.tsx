@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
 
-import '../styles.global.css';
+import '../styles/global.css';
 import { store } from '../store';
 import { ThemeProvider } from '../contexts/ThemeProvider';
 import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
