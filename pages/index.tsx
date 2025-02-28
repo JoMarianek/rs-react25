@@ -1,5 +1,3 @@
-import './styles/global.css';
-
 import MainComponent from './MainComponent';
 
 function App() {
