@@ -1,14 +1,16 @@
 import { useState } from 'react';
+
 import styles from './SearchComponent.module.css';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
 interface onSearchProps {
   onSearch: (term: string) => void;
 }
 
 const SearchComponent = ({ onSearch }: onSearchProps) => {
-  const [localSearchTerm, setLocalSearchTerm] = useState(
-    localStorage.getItem('starTrek_searchTerm') || ''
-  );
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
+
+  useLocalStorage(setLocalSearchTerm);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLocalSearchTerm(event.target.value);

@@ -5,11 +5,12 @@ import SearchComponent from '../SearchComponent/SearchComponent';
 import CardList from '../CardList/CardList';
 import Pagination from '../Pagination/Pagination';
 import ToggleThemeButton from '../ToggleTheme/ToggleThemeButton';
+import { useLocalStorage } from 'hooks/useLocalStorage';
 
 const MainLayout = () => {
-  const [globalSearchTerm, setGlobalSearchTerm] = useState(
-    localStorage.getItem('starTrek_searchTerm') || ''
-  );
+  const [globalSearchTerm, setGlobalSearchTerm] = useState('');
+
+  useLocalStorage(setGlobalSearchTerm);
 
   return (
     <>
