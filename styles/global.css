@@ -1,19 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Antonio:wght@100..700&display=swap');
 
-[data-theme="dark"] {
-  --text-color: #E0E0E0;
-  --background-color: #0A0F24;
-  --primary-color: #D4AF37;
-  --secondary-color: #BB2D3B;
-  --accent-color: #1E90FF;
+[data-theme='dark'] {
+  --text-color: #e0e0e0;
+  --background-color: #0a0f24;
+  --primary-color: #d4af37;
+  --secondary-color: #bb2d3b;
+  --accent-color: #1e90ff;
 }
 
-[data-theme="light"] {
-  --text-color: #0A0F24;
-  --background-color: #F5F5F5;
-  --primary-color: #C89D29;
-  --secondary-color: #A3222D;
-  --accent-color: #0056B3;
+[data-theme='light'] {
+  --text-color: #0a0f24;
+  --background-color: #f5f5f5;
+  --primary-color: #c89d29;
+  --secondary-color: #a3222d;
+  --accent-color: #0056b3;
 }
 
 html {
@@ -49,8 +49,12 @@ body {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 header {

@@ -1,15 +1,6 @@
 {
-  "extends": [
-    "next/core-web-vitals",
-    "next/typescript",
-    "prettier"
-  ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "prettier",
-    "react-compiler"
-  ],
+  "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
+  "plugins": ["react", "react-hooks", "prettier", "react-compiler"],
   "rules": {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
