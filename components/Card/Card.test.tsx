@@ -6,7 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { describe, it, expect } from 'vitest';
 import selectedCardsReducer from '../app/slices/selectedCardsSlice';
 
-import Card from './Card';
+import Card from '../Card/Card';
 
 const store = configureStore({
   reducer: {

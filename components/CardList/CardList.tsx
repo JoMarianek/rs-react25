@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 
 import styles from './CardList.module.css';
-import Card from './Card';
+import Card from '../Card/Card';
 import { AstronomicalObject } from '../../types/shared';
 import { useCloseDetailedCard } from '../../hooks/useCloseDetailedCard';
 import { useGetAstronomicalObjQuery } from '../../store/apiSlice';
