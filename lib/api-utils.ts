@@ -1,6 +1,6 @@
 import { ITEMS_PER_PAGE } from '../config/config';
 
-const baseUrl = 'https://stapi.co/api/v2/rest/astronomicalObject'
+const baseUrl = 'https://stapi.co/api/v2/rest/astronomicalObject';
 
 export const fetchAstronomicalObjects = async (page: number) => {
   const url = `${baseUrl}/search?pageNumber=${page}&pageSize=${ITEMS_PER_PAGE}`;
