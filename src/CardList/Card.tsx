@@ -7,14 +7,17 @@ import CheckBox from '../CheckBox/CheckBox';
 
 const Card = ({ name, type, uid }: CardProps) => {
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const updateURLParams = (): void => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    newSearchParams.set('details', uid);
+    setSearchParams(newSearchParams);
+  };
+
   return (
     <div
       data-testid="card-container"
-      onClick={() => {
-        const newSearchParams = new URLSearchParams(searchParams);
-        newSearchParams.set('details', uid);
-        setSearchParams(newSearchParams);
-      }}
+      onClick={updateURLParams}
       className={styles.cardContainer}
     >
       <CheckBox uid={uid} name={name} type={type} />
