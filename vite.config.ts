@@ -10,12 +10,7 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       include: ['**/*.tsx'],
-      exclude: [
-        '**/node_modules/**',
-        '**/*.test.tsx',
-        '**/*.spec.tsx',
-        'src/__tests__/setup.ts',
-      ],
+      exclude: ['**/node_modules/**', '**/*.test.tsx'],
     },
   },
 });
