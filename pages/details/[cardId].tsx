@@ -5,18 +5,6 @@ import { fetchSingleAstronomicalObject } from '../../lib/api-utils';
 import MainLayout from 'components/layouts/MainLayout';
 import DetailedCard from 'components/DetailedCard/DetailedCard';
 
-const AstronomicalObjectDetail = ({ data }: { data: AstronomicalObject }) => {
-  if (!data) {
-    return <div>Object not foud</div>;
-  }
-
-  return (
-    <MainLayout>
-      <DetailedCard astronomicalObject={data} />
-    </MainLayout>
-  );
-};
-
 export const getServerSideProps: GetServerSideProps = (async (context) => {
   try {
     const { cardId } = context.params || {};
@@ -37,5 +25,17 @@ export const getServerSideProps: GetServerSideProps = (async (context) => {
     };
   }
 }) satisfies GetServerSideProps<{ data: AstronomicalObject | null }>;
+
+const AstronomicalObjectDetail = ({ data }: { data: AstronomicalObject }) => {
+  if (!data) {
+    return <div>Object not foud</div>;
+  }
+
+  return (
+    <MainLayout>
+      <DetailedCard astronomicalObject={data} />
+    </MainLayout>
+  );
+};
 
 export default AstronomicalObjectDetail;
