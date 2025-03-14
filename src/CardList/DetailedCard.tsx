@@ -21,6 +21,8 @@ const DetailedCard = () => {
 
   let content: React.ReactNode;
 
+  if (!uid) return;
+
   if (isFetching) {
     content = <div className="spinner" data-testid="spinner"></div>;
   } else if (isSuccess) {
@@ -36,7 +38,6 @@ const DetailedCard = () => {
     console.error(error);
   }
 
-  if (!uid) return;
   return (
     <div className={styles.detailedCard}>
       <button onClick={handleClose} className={styles.button}>

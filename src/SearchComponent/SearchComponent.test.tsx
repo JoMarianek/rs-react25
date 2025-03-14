@@ -12,7 +12,7 @@ describe('SearchComponent', () => {
     onSearchMock.mockClear();
   });
 
-  it('renders input and button, uodates value, and calls onSearch with trimmed input', () => {
+  it('renders input and button, updates value, and calls onSearch with trimmed input', () => {
     render(<SearchComponent onSearch={onSearchMock} />);
 
     const input = screen.getByPlaceholderText('Search...') as HTMLInputElement;
