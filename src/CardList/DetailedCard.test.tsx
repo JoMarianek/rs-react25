@@ -1,0 +1,86 @@
+import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, it, expect, vi, Mock } from 'vitest';
+
+import DetailedCard from './DetailedCard';
+import { useGetSingleAstronomicalObjQuery } from '../services/apiSlice';
+
+vi.mock('../services/apiSlice', () => ({
+  useGetSingleAstronomicalObjQuery: vi.fn(),
+}));
+
+vi.mock('../hooks/useCloseDetailedCard', () => ({
+  useCloseDetailedCard: vi.fn().mockReturnValue(() => {}),
+}));
+
+describe('DetailedCard', () => {
+  it('renders loading spinner when fetching', () => {
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
+      data: null,
+      isFetching: true,
+      isSuccess: false,
+      isError: false,
+      error: null,
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/?details=123']}>
+        <DetailedCard />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByTestId('spinner')).toBeInTheDocument();
+  });
+
+  it('renders error message when query fails', () => {
+    const testError = new Error('Test error');
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
+      data: null,
+      isFetching: false,
+      isSuccess: false,
+      isError: true,
+      error: testError,
+    });
+
+    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+
+    render(
+      <MemoryRouter initialEntries={['/?details=123']}>
+        <DetailedCard />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText(testError.toString())).toBeInTheDocument();
+    expect(consoleSpy).toHaveBeenCalledWith(testError);
+    consoleSpy.mockRestore();
+  });
+
+  it('renders the data when the query is successful', () => {
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
+      data: {
+        name: 'Betelgeuse',
+        astronomicalObjectType: 'STAR',
+        location: { name: 'Orion', astronomicalObjectType: 'CONSTELLATION' },
+      },
+      isFetching: false,
+      isSuccess: true,
+      isError: false,
+      error: null,
+    });
+
+    render(
+      <MemoryRouter initialEntries={['/?details=123']}>
+        <DetailedCard />
+      </MemoryRouter>
+    );
+
+    const heading = screen.getByRole('heading', { level: 3 });
+    expect(heading).toHaveTextContent('Betelgeuse');
+
+    const detailText = screen.getByText(
+      /This STAR is located in the Orion, which is of type CONSTELLATION/i
+    );
+    expect(detailText).toBeInTheDocument();
+  });
+});

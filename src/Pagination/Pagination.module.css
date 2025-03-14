@@ -1,0 +1,14 @@
+.paginationContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  border-color: var(--secondary-color);
+  margin: 3px;
+}
+
+.active {
+  background-color: var(--secondary-color);
+  color: white;
+}
