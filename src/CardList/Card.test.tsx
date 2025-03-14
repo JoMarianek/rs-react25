@@ -28,17 +28,11 @@ describe('Card component', () => {
     vi.clearAllMocks();
   });
 
-  const mockProps = {
-    name: 'Enterprise',
-    type: 'Ship',
-    uid: '123',
-  };
-
   it('renders the card with the correct name and type', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <Card {...mockProps} />
+          <Card name="Enterprise" type="Ship" uid="123" />
         </MemoryRouter>
       </Provider>
     );
@@ -51,7 +45,7 @@ describe('Card component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
-          <Card {...mockProps} />
+          <Card name="Enterprise" type="Ship" uid="123" />
         </MemoryRouter>
       </Provider>
     );
