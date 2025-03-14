@@ -29,7 +29,7 @@ const SearchComponent = ({ onSearch }: onSearchProps) => {
         value={localSearchTerm}
         onChange={handleChange}
       />
-      <button onClick={handleSearch} className={styles.button}>
+      <button onClick={handleSearch} className={styles.searchButton}>
         Search
       </button>
     </div>
