@@ -33,7 +33,7 @@ const store = configureStore({
 
 describe('CardList - displays filtered cards', () => {
   it('renders only the cards matching the search term when the query is successful', () => {
-    (useGetAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+    (useGetAstronomicalObjQuery as Mock).mockReturnValue({
       data: [
         {
           uid: '1',

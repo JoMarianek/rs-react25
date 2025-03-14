@@ -16,7 +16,7 @@ vi.mock('../hooks/useCloseDetailedCard', () => ({
 
 describe('DetailedCard', () => {
   it('renders loading spinner when fetching', () => {
-    (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
       data: null,
       isFetching: true,
       isSuccess: false,
@@ -35,7 +35,7 @@ describe('DetailedCard', () => {
 
   it('renders error message when query fails', () => {
     const testError = new Error('Test error');
-    (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
       data: null,
       isFetching: false,
       isSuccess: false,
@@ -57,7 +57,7 @@ describe('DetailedCard', () => {
   });
 
   it('renders the data when the query is successful', () => {
-    (useGetSingleAstronomicalObjQuery as unknown as Mock).mockReturnValue({
+    (useGetSingleAstronomicalObjQuery as Mock).mockReturnValue({
       data: {
         name: 'Betelgeuse',
         astronomicalObjectType: 'STAR',

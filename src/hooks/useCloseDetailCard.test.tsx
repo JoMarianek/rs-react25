@@ -11,7 +11,7 @@ describe('useCloseDetailedCard', () => {
   it('does nothing when "details" is absent and removes "details" when present', () => {
     const fakeSearchParams1 = new URLSearchParams();
     const setSearchParamsMock1 = vi.fn();
-    (useSearchParams as unknown as Mock).mockReturnValue([
+    (useSearchParams as Mock).mockReturnValue([
       fakeSearchParams1,
       setSearchParamsMock1,
     ]);
@@ -25,7 +25,7 @@ describe('useCloseDetailedCard', () => {
 
     const fakeSearchParams2 = new URLSearchParams('details=abc&other=123');
     const setSearchParamsMock2 = vi.fn();
-    (useSearchParams as unknown as Mock).mockReturnValue([
+    (useSearchParams as Mock).mockReturnValue([
       fakeSearchParams2,
       setSearchParamsMock2,
     ]);
