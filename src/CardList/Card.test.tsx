@@ -47,7 +47,7 @@ describe('Card component', () => {
     expect(screen.getByText(/ship/i)).toBeInTheDocument();
   });
 
-  it('updates URL params when clicked', () => {
+  it('updates URL params when card is clicked', () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={['/']}>
