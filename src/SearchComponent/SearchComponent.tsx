@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styles from './SearchComponent.module.css';
 
-interface onSearchProps {
+interface SearchComponentProps {
   onSearch: (term: string) => void;
 }
 
-const SearchComponent = ({ onSearch }: onSearchProps) => {
+const SearchComponent = ({ onSearch }: SearchComponentProps) => {
   const [localSearchTerm, setLocalSearchTerm] = useState(
     localStorage.getItem('starTrek_searchTerm') || ''
   );
