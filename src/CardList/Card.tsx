@@ -21,12 +21,8 @@ const Card = ({ name, type, uid }: CardProps) => {
       className={styles.cardContainer}
     >
       <CheckBox uid={uid} name={name} type={type} />
-      <div>
-        <h2>{name}</h2>
-      </div>
-      <div>
-        <p>This astronomical object is of type: {type.toLowerCase()}</p>
-      </div>
+      <h2>{name}</h2>
+      <p>This astronomical object is of type: {type.toLowerCase()}</p>
     </div>
   );
 };
