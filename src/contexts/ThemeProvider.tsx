@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ReactNode } from 'react';
 
 import { ThemeContext } from './ThemeContext';
+import styles from './ThemeProvider.module.css';
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -16,7 +17,7 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div data-theme={theme} className="themeWrapper">
+      <div data-theme={theme} className={styles.themeWrapper}>
         {children}
       </div>
     </ThemeContext.Provider>

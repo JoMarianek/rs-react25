@@ -25,15 +25,6 @@ body {
   margin: 0;
 }
 
-.themeWrapper {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  height: 100%;
-}
-
 .mainContainer {
   display: flex;
   gap: 8vw;
