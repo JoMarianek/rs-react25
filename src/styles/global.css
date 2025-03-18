@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+:root {
+  font-family: 'Lora', serif;
+  --background-color: #e7f0e5;
+  --text-color: #2d3339;
+  --primary-color: #4e7e65;
+  --secondary-color: #c8aa79;
+  --accent-color: #9e3a33;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
