@@ -1,0 +1,7 @@
+.cardList {
+  list-style: none;
+  box-sizing: border-box;
+  border: 0.2rem solid var(--secondary-color);
+  border-radius: 12px;
+  margin: 1rem 0;
+}

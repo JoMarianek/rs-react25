@@ -1,4 +1,5 @@
-const url = 'https://restcountries.com/v3.1/all?fields=name,capital,currencies';
+const url =
+  'https://restcountries.com/v3.1/all?fields=name,population,region,flag';
 
 export const fetchCountries = async () => {
   try {
