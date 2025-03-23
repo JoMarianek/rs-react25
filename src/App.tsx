@@ -1,10 +1,13 @@
 import './styles/global.css';
 import CardList from './components/CardList';
+import SearchComponent from './components/SearchComponent';
 
 function App() {
   return (
     <>
-      <nav></nav>
+      <nav>
+        <SearchComponent />
+      </nav>
       <CardList />
     </>
   );
