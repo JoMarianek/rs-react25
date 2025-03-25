@@ -1,4 +1,6 @@
 .cardList {
+  display: flex;
+  align-items: flex-start;
   list-style: none;
   box-sizing: border-box;
   border: 0.2rem solid var(--secondary-color);

@@ -19,12 +19,16 @@ const CardList = ({ data, setData, searchTerm }: CardListProps) => {
     fetch();
   }, [setData]);
 
+  const filteredData = data.filter((item) =>
+    item?.name?.common?.toLowerCase().includes(searchTerm)
+  );
+
   return (
     <ul>
-      {data.map((item: CardProps, index: number) => (
+      {filteredData.map((item: CardProps, index: number) => (
         <li
           className={styles.cardList}
-          key={item.name?.common && `no-name-${index}`}
+          key={item.name?.common || `no-name-${index}`}
         >
           <Card
             name={item?.name}
