@@ -1,18 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { fetchCountries } from '../services/apiCall';
 import { CardProps } from '../shared/types';
 import Card from './Card';
 import styles from './CardList.module.css';
+import { fetchCountries } from '../services/apiCall';
 
-const CardList = () => {
-  const [data, setData] = useState<CardProps[]>([]);
+type CardListProps = {
+  data: CardProps[];
+  setData: React.Dispatch<React.SetStateAction<CardProps[]>>;
+  searchTerm: string;
+};
+
+const CardList = ({ data, setData, searchTerm }: CardListProps) => {
   useEffect(() => {
     const fetch = async () => {
       setData(await fetchCountries());
     };
     fetch();
-  }, []);
+  }, [setData]);
 
   return (
     <ul>

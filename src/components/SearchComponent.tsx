@@ -1,12 +1,22 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import styles from './SearchComponent.module.css';
 
-const SearchComponent = () => {
-  // const [searchTerm, setSearchTerm] = useState('');
+interface SearchComponentProps {
+  searchTerm: string;
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  // const handleSubmit = (event) => {
-  //   setSearchTerm(event.target.text);
-  // };
+const SearchComponent = ({
+  searchTerm,
+  setSearchTerm,
+}: SearchComponentProps) => {
+  const handleSubmit = (event) => {
+    setSearchTerm(event.target.text.toLowerCase());
+  };
+
+  const filterCards = () => {
+    const filteredData = data.filter((item.name.common).toLowerCase().includes(searchTerm) )
+  }
 
   return (
     <>
